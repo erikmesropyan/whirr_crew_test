@@ -1,1 +1,29 @@
-<p>giphy-images works!</p>
+<div class="search_box--container">
+  <mat-form-field appearance="outline">
+    <mat-label>SearchText</mat-label>
+    <input type="text" matInput [formControl]="textFormControl" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="textFormControl.hasError('required')">
+      text is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button (click)="onSubmit()" mat-stroked-button [disabled]="textFormControl.invalid">Search</button>
+</div>
+<ng-container *ngIf="data; else no_data">
+  <div class="giphy_images--container">
+    <mat-grid-list cols="9">
+      <mat-grid-tile *ngFor="let images of data.data"
+                     [colspan]="3"
+                     [rowspan]="3">
+        <img [src]="images.images.original.url" [alt]="images.images.original.url">
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <mat-paginator [length]="data.pagination.total_count" [pageSize]="data.pagination.count"
+                 [hidePageSize]="true" (page)="pageChanged($event)">
+  </mat-paginator>
+</ng-container>
+<ng-template #no_data>
+  <div>
+    No data
+  </div>
+</ng-template>

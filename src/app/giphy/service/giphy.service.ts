@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
 import {GiphyResponse} from '../model/model';
 import {PageRequest} from '../model/pageRequest';
-import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {buildQuery} from '../util/queryBuilder';
 

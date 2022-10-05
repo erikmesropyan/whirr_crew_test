@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <app-giphy-images (onTextChanged)="onTextChanged($event)"
+                    (onPageChanged)="onPageChanged($event)"
+                    [data]="giphyResponse"></app-giphy-images>
+</div>
