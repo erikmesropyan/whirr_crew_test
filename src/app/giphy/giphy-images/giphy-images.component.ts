@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {GiphyService} from '../service/giphy.service';
+import {PageRequest} from '../model/pageRequest';
 
 @Component({
   selector: 'app-giphy-images',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GiphyImagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly giphyService: GiphyService) { }
 
   ngOnInit(): void {
+    this.giphyService.getImages(PageRequest.default(), '').subscribe(response => {
+      console.log(response);
+    })
   }
 
 }
